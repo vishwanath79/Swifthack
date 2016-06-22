@@ -20,6 +20,10 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //create a new UIBarButtonItem using the "add" system item, and configured it to run a method called promptForAnswer() when tapped.
+         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(promptForAnswer))
+        
+        // read from disk
         if let startWordsPath = NSBundle.mainBundle().pathForResource("start", ofType: "txt") {
             if let startWords = try? String(contentsOfFile: startWordsPath, usedEncoding: nil) {
                 allWords = startWords.componentsSeparatedByString("\n")
@@ -29,15 +33,37 @@ class MasterViewController: UITableViewController {
             }
         }
 
+        startGame()
     }
 
     
     func startGame() {
-        allWords = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(allWords) as [String]
+        allWords = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(allWords) as! [String]
         title = allWords[0]
         objects.removeAll(keepCapacity: true)
         tableView.reloadData()
     }
+    
+    
+    //Closure
+    
+    func promptForAnswer() {
+        let ac = UIAlertController(title: "Enter answer", message: nil, preferredStyle: .Alert)
+        ac.addTextFieldWithConfigurationHandler(nil)
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .Default) { [unowned self, ac] (action: UIAlertAction!) in
+            let answer = ac.textFields![0]
+            self.submitAnswer(answer.text!)
+        }
+        
+        ac.addAction(submitAction)
+        presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    func submitAnswer(answer: String) {
+        
+    }
+    
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -64,7 +90,7 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
         let object = objects[indexPath.row]
-        cell.textLabel!.text = object
+        cell.textLabel!.text = object as! String
         return cell
     }
 
