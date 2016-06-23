@@ -62,8 +62,80 @@ class MasterViewController: UITableViewController {
     
     func submitAnswer(answer: String) {
         
+        let lowerAnswer = answer.lowercaseString
+        
+        let errorTitle: String
+        let errorMessage: String
+        
+        if wordIsPossible(lowerAnswer) {
+            
+            if wordIsOriginal(lowerAnswer) {
+                if wordIsReal(lowerAnswer) {
+                    objects.insert(answer, atIndex: 0)
+                    
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                    tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    
+                    return
+                } else {
+                    
+                    errorTitle = "Word no recognized"
+                    
+                    errorMessage = "You cant just make them up"
+                }
+            } else {
+                
+                errorTitle = "Word used already"
+                errorMessage = "Be more original"
+            }
+            
+            
+        } else {
+            
+            errorTitle = "Word not possible"
+            errorMessage = "You cant specll that word from '\(title!.lowercaseString)'!"
+        }
+        
+        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        
+        presentViewController(ac, animated: true, completion: nil)
+        
     }
     
+    func wordIsPossible(word: String) -> Bool {
+        var tempWord = title!.lowercaseString
+        
+        for letter in word.characters {
+            if let pos = tempWord.rangeOfString(String(letter)) {
+                if pos.isEmpty {
+                    return false
+                } else {
+                    tempWord.removeAtIndex(pos.startIndex)
+                }
+            } else {
+                return false
+            }
+        }
+        
+        return true
+    }
+        
+      //
+        
+    
+    
+func wordIsOriginal(word: String) -> Bool {
+        return !objects.contains(word)
+    }
+    
+    func wordIsReal(word: String) -> Bool {
+        let checker = UITextChecker()
+        let range = NSMakeRange(0, word.characters.count)
+        let misspelledRange = checker.rangeOfMisspelledWordInString(word, range: range, startingAt: 0, wrap: false, language: "en")
+        
+        return misspelledRange.location == NSNotFound
+    }
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
