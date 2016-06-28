@@ -50,8 +50,9 @@ class ViewController: UIViewController {
         
         for label in viewsDictionary.keys {
             
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H: |[\(label)]|", options: [], metrics: nil, views: viewsDictionary))
+            view.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat(" V: |[ label1( = = 72)]-[ label2( = = 72)]-[ label3( = = 72)]-[ label4( = = 72)]-[ label5( = = 72)]-( > = 10)-|", options: [], metrics: nil, views: viewsDictionary))
             
+         
             
         }
         
