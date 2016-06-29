@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE3B78BD1D238B9700BF1892 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3B78BC1D238B9700BF1892 /* SwiftyJSON.swift */; };
+		AE3B78BF1D23949200BF1892 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3B78BE1D23949200BF1892 /* Default-568h@2x.png */; };
 		AEBBB6DF1D223DA800F37826 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBBB6DE1D223DA800F37826 /* AppDelegate.swift */; };
 		AEBBB6E11D223DA800F37826 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBBB6E01D223DA800F37826 /* MasterViewController.swift */; };
 		AEBBB6E31D223DA800F37826 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBBB6E21D223DA800F37826 /* DetailViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE3B78BC1D238B9700BF1892 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		AE3B78BE1D23949200BF1892 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AEBBB6DB1D223DA800F37826 /* 7WhitehousePetitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 7WhitehousePetitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEBBB6DE1D223DA800F37826 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEBBB6E01D223DA800F37826 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +44,7 @@
 		AEBBB6D21D223DA800F37826 = {
 			isa = PBXGroup;
 			children = (
+				AE3B78BE1D23949200BF1892 /* Default-568h@2x.png */,
 				AEBBB6DD1D223DA800F37826 /* 7WhitehousePetitions */,
 				AEBBB6DC1D223DA800F37826 /* Products */,
 			);
@@ -56,6 +61,7 @@
 		AEBBB6DD1D223DA800F37826 /* 7WhitehousePetitions */ = {
 			isa = PBXGroup;
 			children = (
+				AE3B78BC1D238B9700BF1892 /* SwiftyJSON.swift */,
 				AEBBB6DE1D223DA800F37826 /* AppDelegate.swift */,
 				AEBBB6E01D223DA800F37826 /* MasterViewController.swift */,
 				AEBBB6E21D223DA800F37826 /* DetailViewController.swift */,
@@ -127,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEBBB6EB1D223DA800F37826 /* LaunchScreen.storyboard in Resources */,
+				AE3B78BF1D23949200BF1892 /* Default-568h@2x.png in Resources */,
 				AEBBB6E81D223DA800F37826 /* Assets.xcassets in Resources */,
 				AEBBB6E61D223DA800F37826 /* Main.storyboard in Resources */,
 			);
@@ -142,6 +149,7 @@
 				AEBBB6E31D223DA800F37826 /* DetailViewController.swift in Sources */,
 				AEBBB6E11D223DA800F37826 /* MasterViewController.swift in Sources */,
 				AEBBB6DF1D223DA800F37826 /* AppDelegate.swift in Sources */,
+				AE3B78BD1D238B9700BF1892 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +299,7 @@
 				AEBBB6F11D223DA800F37826 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
