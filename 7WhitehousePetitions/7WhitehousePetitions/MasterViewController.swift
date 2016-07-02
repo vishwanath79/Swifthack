@@ -21,7 +21,16 @@ class MasterViewController: UITableViewController {
         
        
         
-        let urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+        let urlString : String
+        
+        if navigationController?.tabBarItem.tag == 0 {
+            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+        } else {
+            
+            urlString = "https:// api.whitehouse.gov/ v1/ petitions.json? signatureCountFloor = 10000& limit = 100"
+            
+       
+        }
         
         if let url = NSURL(string: urlString) {
             
@@ -32,10 +41,29 @@ class MasterViewController: UITableViewController {
                 if json["metadata"]["responseInfo"]["status"].intValue == 200 {
                     
                     parseJSON(json)
+                } else {
+                    showError()
                 }
                 
+            } else {
+                showError()
             }
+        } else {
+            showError()
         }
+        
+    }
+    
+
+
+
+        func showError() {
+            
+            let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed", preferredStyle: .Alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(ac, animated: true, completion: nil)
+        }
+        
         
         //self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
@@ -45,7 +73,7 @@ class MasterViewController: UITableViewController {
          //   let controllers = split.viewControllers
          //   self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         //}
-    }
+
     
     
     
@@ -116,7 +144,9 @@ class MasterViewController: UITableViewController {
 
 
 
-
 }
+
+
+
 
 
