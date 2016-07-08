@@ -22,17 +22,52 @@ class ViewController: UIViewController {
     @IBOutlet var scoreLabel: UILabel!
     
     @IBAction func submitTrapped(sender: AnyObject) {
+        
+        if let solutionPosition = solutions.indexOf(currentAnswer.text!) {
+            activatedButtons.removeAll()
+            
+            var splitClues = answersLabel.text!.componentsSeparatedByString("\n")
+            splitClues[solutionPosition] = currentAnswer.text!
+            answersLabel.text = splitClues.joinWithSeparator("\n")
+            
+            currentAnswer.text = ""
+            score += 1
+            
+            if score % 7 == 0 {
+                
+                let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .Alert)
+                
+                ac.addAction(UIAlertAction(title: "Lets go", style: .Default, handler: levelUp))
+                presentViewController(ac, animated: true, completion: nil)
+                
+            }
+            
+        }
     }
     
     
     @IBAction func clearTapped(sender: AnyObject) {
+    
+        currentAnswer.text = ""
+        
+        for btn in activatedButtons {
+            
+            btn.hidden = false
+        }
+     activatedButtons.removeAll()
     }
     
     var letterButtons = [UIButton]()
     var activatedButtons = [UIButton]()
     var solutions = [String]()
     
-    var score = 0
+    var score: Int = 0 {
+        
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+        
+    }
     var level = 1
     
     
@@ -48,6 +83,20 @@ class ViewController: UIViewController {
     }
 
     
+    func levelUp(action: UIAlertAction!) {
+        level += 1
+        solutions.removeAll(keepCapacity: true)
+        
+        loadLevel()
+        
+        for btn in letterButtons {
+        
+        btn.hidden = false
+    }
+    
+}
+
+
     func loadLevel() {
     
     var clueString = ""
