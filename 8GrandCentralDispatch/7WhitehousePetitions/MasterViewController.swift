@@ -32,6 +32,8 @@ class MasterViewController: UITableViewController {
        
         }
         
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
+        
         if let url = NSURL(string: urlString) {
             
             if let data = try? NSData(contentsOfURL: url, options: []) {
@@ -40,18 +42,19 @@ class MasterViewController: UITableViewController {
                 
                 if json["metadata"]["responseInfo"]["status"].intValue == 200 {
                     
-                    parseJSON(json)
+                    self.parseJSON(json)
                 } else {
-                    showError()
+                    self.showError()
                 }
                 
             } else {
-                showError()
+                self.showError()
             }
         } else {
-            showError()
+            self.showError()
         }
         
+    }
     }
     
 
@@ -59,11 +62,14 @@ class MasterViewController: UITableViewController {
 
         func showError() {
             
+            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+            
             let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed", preferredStyle: .Alert)
             ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(ac, animated: true, completion: nil)
+            self.presentViewController(ac, animated: true, completion: nil)
         }
-        
+    }
+    
         
         //self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
@@ -91,7 +97,9 @@ class MasterViewController: UITableViewController {
         
         }
         
-        tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+        self.tableView.reloadData()
+        }
         
     }
     
