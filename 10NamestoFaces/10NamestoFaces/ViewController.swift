@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    var people = [Person]()
     
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -84,6 +85,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
         }
 
+        let person = person(name: "Unknown", image: imageName)
+        people.append(person)
+        collectionView.reloadData()
+        
         dismissViewControllerAnimated(true, completion: nil)
         
         }
