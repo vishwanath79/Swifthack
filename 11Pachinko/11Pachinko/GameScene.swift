@@ -10,7 +10,24 @@ import SpriteKit
 
     //make the class conform to SKPhysicsContactDelegate property for collision detection
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    //SkLabelNode is similar to UIlabel
+    var scoreLabel: SKLabelNode!
+    
+    var score: Int = 0 {
+        
+        didSet {
+            
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
+    
+    
+    
     override func didMoveToView(view: SKView) {
+        
+        
         /* Setup your scene here */
      let background = SKSpriteNode(imageNamed: "background.jpg")
         background.position = CGPoint(x: 512, y: 384)
@@ -38,6 +55,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeBouncerAt(CGPoint(x:768, y:0))
         makeBouncerAt(CGPoint(x:1024, y:0))
         
+        
+        // place score label into the scene and property observer automatically updates the label as the score value changes
+        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        scoreLabel.text = "Score: 0"
+        scoreLabel.horizontalAlignmentMode = .Right
+        scoreLabel.position = CGPoint(x: 980, y: 700)
+        addChild(scoreLabel)
+        
+        
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -52,6 +79,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let ball = SKSpriteNode(imageNamed: "ballRed")
             ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+            
+            //contacttestbitmask means which nodes should i bump into and whihc collisions do you want to know about
+            //collisonbitmask indicates tell me about every collission
+            ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
+            
             // restitution (bounciness) level of 0.4
             ball.physicsBody!.restitution = 0.4
             ball.position = location
@@ -129,11 +161,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           // spritekits positions start from the center of the nodes so x:512 y: 0 means centered horizontally on the bottom edge of the scene
         bouncer.position = position
         bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0 )
+        
+        bouncer.physicsBody!.contactTestBitMask = bouncer.physicsBody!.collisionBitMask
+        
         bouncer.physicsBody!.dynamic = false
         addChild(bouncer)
     }
     
    
+    func collisionBetweenBall(ball: SKNode, object: SKNode) {
+        
+        if object.name == "good" {
+            destroyBall(ball)
+            //to modify the player score
+            score += 1
+            
+        } else if object.name == "bad" {
+            
+            destroyBall(ball)
+            score -= 1
+        }
+
+        
+    }
+    
+    func destroyBall(ball: SKNode) {
+        //removes a node from your node tree or removes node form your game
+        ball.removeFromParent()
+    }
+    
+    
+    //for contact checking
+    func didBeginContact(contact: SKPhysicsContact) {
+        if contact.bodyA.node!.name == "ball" {
+            
+            collisionBetweenBall(contact.bodyA.node!, object: contact.bodyB.node!)
+        } else if contact.bodyB.node!.name == "ball" {
+            
+            collisionBetweenBall(contact.bodyB.node!, object: contact.bodyA.node!)
+        }
+    }
+    
+    
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     
