@@ -7,12 +7,35 @@
 //
 
 import SpriteKit
+import GameplayKit
 
     //make the class conform to SKPhysicsContactDelegate property for collision detection
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //SkLabelNode is similar to UIlabel
     var scoreLabel: SKLabelNode!
+    
+    var editLabel: SKLabelNode!
+    
+    var editingMode: Bool = false {
+        
+        //place obstacles on top of the scene and the slots at the bottom so that players have to position the balls exactly
+
+        didSet {
+            
+            if editingMode {
+                
+                editLabel.text = "Done"
+            }
+            
+            else {
+                
+                editLabel.text = "Edit"
+            }
+            
+        }
+    }
+    
     
     var score: Int = 0 {
         
@@ -21,6 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreLabel.text = "Score: \(score)"
         }
     }
+    
     
     
     
@@ -64,11 +88,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(scoreLabel)
         
         
+        //add label to top right of the screen
+        //using property observer to automatically change the editing labels text when edit mode is changed
+        editLabel = SKLabelNode(fontNamed: "Chalkduster")
+        editLabel.text = "Edit"
+        editLabel.position = CGPoint(x: 80, y: 700)
+        addChild(editLabel)
         
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        /* Called when a touch begins */
+        
+        // what is new is detecting whether the user tapped the edit/done button or is trying to create a ball
+        //To make this work we are going to ask spritekit to give us a list of all nodes at the point that was tapped and check if it contains our edit label
+        // if it does we flip the value of our editingmode boolean, else execute previous ball creation mode
         if let touch = touches.first {
             let location = touch.locationInNode(self)
             //let box = SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: 64, height: 64))
@@ -77,6 +111,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //box.position = location
             //addChild(box)
             
+            let objects = nodesAtPoint(location) as [SKNode]
+            
+            if objects.contains(editLabel) {
+                //this means set editing mode to be the oppossite of what its right now
+                editingMode = !editingMode
+                
+            } else {
+                
+                if editingMode {
+                    //create a box
+                    let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
+                    let box = SKSpriteNode(color: RandomColor(), size: size)
+                    box.zRotation = RandomCGFloat(min: 0, max: 3)
+                    box.position = location
+                    box.physicsBody = SKPhysicsBody(rectangleOfSize: box.size)
+                    box.physicsBody!.dynamic = false
+                    
+                    addChild(box)
+                } else {
+                    
+                //createa ball
+                
+
+                    
             let ball = SKSpriteNode(imageNamed: "ballRed")
             ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
             
@@ -94,79 +152,61 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-    
+            }
+            
     }
+    }
+    
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+        
+    }
+    
+    
     
     //setting up the scene to be the contact delegate of the physics world
     //we need to change the contactTestBitMask property of our physics objects which sets the contactDelegate property to be our scene
 
     
+    func makeBouncerAt(position: CGPoint) {
+        let bouncer = SKSpriteNode(imageNamed: "bouncer")
+        bouncer.position = position
+        bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0)
+        bouncer.physicsBody!.contactTestBitMask = bouncer.physicsBody!.collisionBitMask
+        bouncer.physicsBody!.dynamic = false
+        addChild(bouncer)
+    }
     
-    
-    
-    // whether the slot is good or not and which image gets loaded
     func makeSlotAt(position: CGPoint, isGood: Bool) {
-        
         var slotBase: SKSpriteNode
         var slotGlow: SKSpriteNode
         
         if isGood {
-            
             slotBase = SKSpriteNode(imageNamed: "slotBaseGood")
             slotGlow = SKSpriteNode(imageNamed: "slotGlowGood")
-            
-            // need to have three names in our code: good slots, bad slots and balls
-            
             slotBase.name = "good"
-            
         } else {
-            
             slotBase = SKSpriteNode(imageNamed: "slotBaseBad")
             slotGlow = SKSpriteNode(imageNamed: "slotGlowBad")
-            
             slotBase.name = "bad"
         }
         
         slotBase.position = position
         slotGlow.position = position
         
-        
-        //add rectangle physics to slots
         slotBase.physicsBody = SKPhysicsBody(rectangleOfSize: slotBase.size)
-        //slotbase needs to be non-dynamic because we dont want it to move out of the way when a player ball hits
         slotBase.physicsBody!.dynamic = false
-        
         
         addChild(slotBase)
         addChild(slotGlow)
         
-        
-        // angels are specified in radians not degrees. pi radians = 180 degrees
-        //Built in value of pi called M_PI
-        //Have to use CGFLoat with M_PI
-        //WHen you create an action it will run once , if you want it to run forever, you create another action to wrap the first one using repeatActionForever()
-        
         let spin = SKAction.rotateByAngle(CGFloat(M_PI_2), duration: 10)
         let spinForever = SKAction.repeatActionForever(spin)
         slotGlow.runAction(spinForever)
-        
-        
-        
     }
     
     
-    func makeBouncerAt(position: CGPoint) {
-        
-        let bouncer = SKSpriteNode(imageNamed: "bouncer")
-          // spritekits positions start from the center of the nodes so x:512 y: 0 means centered horizontally on the bottom edge of the scene
-        bouncer.position = position
-        bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0 )
-        
-        bouncer.physicsBody!.contactTestBitMask = bouncer.physicsBody!.collisionBitMask
-        
-        bouncer.physicsBody!.dynamic = false
-        addChild(bouncer)
-    }
+
     
    
     func collisionBetweenBall(ball: SKNode, object: SKNode) {
@@ -187,6 +227,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func destroyBall(ball: SKNode) {
         //removes a node from your node tree or removes node form your game
+        
+        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
+            fireParticles.position = ball.position
+            addChild(fireParticles)
+        }
         ball.removeFromParent()
     }
     
@@ -204,15 +249,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
-    
-    
-    
-    
-    }
-    
-    
+
+
     
     
 }

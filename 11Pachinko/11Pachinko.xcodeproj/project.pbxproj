@@ -42,6 +42,7 @@
 		AE2E03001D3DDF2A00CC8A22 /* slotGlowGood.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2E02E41D3DDF2A00CC8A22 /* slotGlowGood.png */; };
 		AE2E03011D3DDF2A00CC8A22 /* slotGlowGood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2E02E51D3DDF2A00CC8A22 /* slotGlowGood@2x.png */; };
 		AE2E03021D3DDF2A00CC8A22 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2E02E61D3DDF2A00CC8A22 /* spark.png */; };
+		AEDD47D61D41E12D00329668 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD47D51D41E12D00329668 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		AE2E02E41D3DDF2A00CC8A22 /* slotGlowGood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slotGlowGood.png; sourceTree = "<group>"; };
 		AE2E02E51D3DDF2A00CC8A22 /* slotGlowGood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slotGlowGood@2x.png"; sourceTree = "<group>"; };
 		AE2E02E61D3DDF2A00CC8A22 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		AEDD47D51D41E12D00329668 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				AE2E02B21D3DDD8E00CC8A22 /* AppDelegate.swift */,
 				AE2E02B41D3DDD8E00CC8A22 /* GameScene.sks */,
 				AE2E02B61D3DDD8E00CC8A22 /* GameScene.swift */,
+				AEDD47D51D41E12D00329668 /* Helper.swift */,
 				AE2E02B81D3DDD8E00CC8A22 /* GameViewController.swift */,
 				AE2E02BA1D3DDD8E00CC8A22 /* Main.storyboard */,
 				AE2E02BF1D3DDD8E00CC8A22 /* LaunchScreen.storyboard */,
@@ -266,6 +269,7 @@
 				AE2E02B71D3DDD8E00CC8A22 /* GameScene.swift in Sources */,
 				AE2E02B91D3DDD8E00CC8A22 /* GameViewController.swift in Sources */,
 				AE2E02B31D3DDD8E00CC8A22 /* AppDelegate.swift in Sources */,
+				AEDD47D61D41E12D00329668 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +421,7 @@
 				AE2E02C71D3DDD8E00CC8A22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
