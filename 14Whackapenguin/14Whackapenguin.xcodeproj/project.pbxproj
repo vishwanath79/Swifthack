@@ -29,6 +29,7 @@
 		AE58DA471D50651400E6FB3A /* whackMask.png in Resources */ = {isa = PBXBuildFile; fileRef = AE58DA391D50651400E6FB3A /* whackMask.png */; };
 		AE58DA481D50651400E6FB3A /* whackMask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE58DA3A1D50651400E6FB3A /* whackMask@2x.png */; };
 		AE58DA4A1D50652300E6FB3A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58DA491D50652300E6FB3A /* Helper.swift */; };
+		AE58DA4C1D5068C300E6FB3A /* WhackSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58DA4B1D5068C300E6FB3A /* WhackSlot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		AE58DA391D50651400E6FB3A /* whackMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whackMask.png; sourceTree = "<group>"; };
 		AE58DA3A1D50651400E6FB3A /* whackMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whackMask@2x.png"; sourceTree = "<group>"; };
 		AE58DA491D50652300E6FB3A /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		AE58DA4B1D5068C300E6FB3A /* WhackSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhackSlot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				AE58DA161D50645800E6FB3A /* AppDelegate.swift */,
 				AE58DA181D50645800E6FB3A /* GameScene.sks */,
 				AE58DA1A1D50645800E6FB3A /* GameScene.swift */,
+				AE58DA4B1D5068C300E6FB3A /* WhackSlot.swift */,
 				AE58DA1C1D50645800E6FB3A /* GameViewController.swift */,
 				AE58DA1E1D50645800E6FB3A /* Main.storyboard */,
 				AE58DA211D50645900E6FB3A /* Assets.xcassets */,
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE58DA1B1D50645800E6FB3A /* GameScene.swift in Sources */,
+				AE58DA4C1D5068C300E6FB3A /* WhackSlot.swift in Sources */,
 				AE58DA1D1D50645800E6FB3A /* GameViewController.swift in Sources */,
 				AE58DA171D50645800E6FB3A /* AppDelegate.swift in Sources */,
 				AE58DA4A1D50652300E6FB3A /* Helper.swift in Sources */,

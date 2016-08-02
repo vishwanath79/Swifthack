@@ -12,6 +12,7 @@ import SpriteKit
 class GameScene: SKScene {
     
     var gameScore: SKLabelNode!
+    var slots = [WhackSlot]() 
     var score: Int = 0 {
         
         didSet {
@@ -37,9 +38,12 @@ class GameScene: SKScene {
         addChild(gameScore)
     
     
-    
-    
-    
+        // four loops that call createSlotAt()
+        
+        for i in 0 ..< 5 { createSlotAt(CGPoint(x: 100 + (i*170), y: 410)) }
+        for i in 0 ..< 4 { createSlotAt(CGPoint(x: 180 + (i*170), y: 320)) }
+        for i in 0 ..< 5 { createSlotAt(CGPoint(x: 100 + (i*170), y: 230)) }
+        for i in 0 ..< 4 { createSlotAt(CGPoint(x: 180 + (i*170), y: 140)) }
     
     
     }
@@ -50,6 +54,13 @@ class GameScene: SKScene {
 
     }
    
+    func createSlotAt(pos: CGPoint) {
+        let slot = WhackSlot()
+        slot.configureAtPosition(pos)
+        addChild(slot)
+        slots.append(slot)
+    }
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
