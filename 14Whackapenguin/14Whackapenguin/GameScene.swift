@@ -12,7 +12,8 @@ import SpriteKit
 class GameScene: SKScene {
     
     var gameScore: SKLabelNode!
-    var slots = [WhackSlot]() 
+    var slots = [WhackSlot]()
+    var popupTime = 0.85
     var score: Int = 0 {
         
         didSet {
@@ -45,6 +46,10 @@ class GameScene: SKScene {
         for i in 0 ..< 5 { createSlotAt(CGPoint(x: 100 + (i*170), y: 230)) }
         for i in 0 ..< 4 { createSlotAt(CGPoint(x: 180 + (i*170), y: 140)) }
     
+        // going to call createEnemy() after a delay
+        // requires a new grand central dispatch code
+        //dispatch_time() is used to create values for a delay and dispatch_after() is used to schedule a closure to execute after the time has been reached
+        
     
     }
     

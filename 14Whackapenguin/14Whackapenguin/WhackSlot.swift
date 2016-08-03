@@ -10,6 +10,10 @@ import UIKit
 
 class WhackSlot: SKNode {
     
+    var visible = false
+    var isHit = false
+    
+    
     var charNode: SKSpriteNode!
     // add a hole at its current position
     
@@ -50,6 +54,25 @@ class WhackSlot: SKNode {
     }
     
 
-    
-    
+    //showing a penguin to be tapped on will be handled by show
+    //will make the charater slide upwards so it becomes visible then set visible = true and hit to be false
+    //movement is going to be created by a new SKAction called moveByX(_:y:duration:)
+    //can change the image inside our penguin sprite by changing its texture property
+    func show(hideTime hideTime: Double) {
+        
+        if visible { return }
+        // show method is going to be triggered by the view controller on a recurring basis managed by property popuptime
+        charNode.runAction(SKAction.moveByX(0, y: 80, duration: 0.05))
+        visible = true
+        isHit = false
+        
+        if RandomInt(min: 0, max: 2) == 0 {
+            charNode.texture = SKTexture(imageNamed: "penguinGood")
+            charNode.name = "charFriend"
+        } else {
+            charNode.texture = SKTexture(imageNamed: "penguinEvil")
+            charNode.name = "charEnemy"
+        }
+        
+    }
 }
