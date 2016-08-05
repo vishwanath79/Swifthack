@@ -369,6 +369,7 @@
 				AE58DA2B1D50645900E6FB3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

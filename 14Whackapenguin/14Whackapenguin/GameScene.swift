@@ -50,7 +50,43 @@ class GameScene: SKScene {
         // requires a new grand central dispatch code
         //dispatch_time() is used to create values for a delay and dispatch_after() is used to schedule a closure to execute after the time has been reached
         
+        
+        RunAfterDelay(1) {
+            [unowned self] in
+            self.createEnemy()
+        }
     
+    }
+    
+    
+    func createEnemy() {
+        
+        //will decrease popuptime each times its called
+        // shuffle the list of available slots using the gameplaykit shuffle that we've used previously
+        // make the first slot show itself, passing in the current value of popuptime for the method to use later
+        // generate the four random numbers to see if more slots should be shown. potentially up to 5 slots could be shown at once
+        // call itself again after a random delay. delay will be between popuptime halved and popuptime doubled.
+        // use the *= operator to multiply and assing at the same time
+        // use the randomdouble function to genreate a random double value
+        popupTime *= 0.991
+        
+        slots = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(slots) as! [WhackSlot]
+        slots[0].show(hideTime: popupTime)
+        
+        if RandomInt(min: 0, max: 12) > 4 { slots[1].show(hideTime: popupTime) }
+        if RandomInt(min: 0, max: 12) > 8 { slots[2].show(hideTime: popupTime) }
+        if RandomInt(min: 0, max: 12) > 10 { slots[3].show(hideTime: popupTime) }
+        if RandomInt(min: 0, max: 12) > 11 { slots[4].show(hideTime: popupTime) }
+
+        let minDelay = popupTime / 2.0
+        let maxDelay = popupTime * 2
+        
+        
+        RunAfterDelay(RandomDouble(min: minDelay, max: maxDelay)) { [unowned self] in
+            
+            self.createEnemy()
+        
+    }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -69,4 +105,6 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
+    
+
 }
