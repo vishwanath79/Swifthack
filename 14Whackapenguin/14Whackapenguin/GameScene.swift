@@ -14,6 +14,7 @@ class GameScene: SKScene {
     var gameScore: SKLabelNode!
     var slots = [WhackSlot]()
     var popupTime = 0.85
+    var numRounds = 0
     var score: Int = 0 {
         
         didSet {
@@ -71,6 +72,25 @@ class GameScene: SKScene {
         popupTime *= 0.991
         
         slots = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(slots) as! [WhackSlot]
+        numRounds += 1
+        
+        if numRounds >= 30 {
+            
+            for slot in slots {
+                
+                slot.hide()
+            }
+            
+            
+            let gameOver = SKSpriteNode(imageNamed: "gameOver")
+            gameOver.position = CGPoint(x:512, y:384)
+            gameOver.zPosition = 1
+            addChild(gameOver)
+            
+            return
+            
+        }
+        
         slots[0].show(hideTime: popupTime)
         
         if RandomInt(min: 0, max: 12) > 4 { slots[1].show(hideTime: popupTime) }
@@ -92,6 +112,48 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        /* Called when a touch begins */
         
+        if let touch = touches.first {
+            
+            let location = touch.locationInNode(self)
+            let nodes = nodesAtPoint(location)
+            
+            for node in nodes {
+                
+                if node.name == "charFriend" {
+                    
+                    //they should not have whacked this penguin, when this happens call the hit method to make the penguin hidei tself, subtract 5 from the current score and run an action that plays bad hit sound
+                    let whackSlot = node.parent!.parent as! WhackSlot
+                    
+                    if !whackSlot.visible { continue }
+                    
+                    if whackSlot.isHit { continue }
+                    
+                    whackSlot.hit()
+                    score -= 5
+                    
+                    runAction(SKAction.playSoundFileNamed("whackBad.caf", waitForCompletion: false))
+                }
+                
+                else if node.name == "charEnemy" {
+                    
+                    //they should have whacked this one, we want to add 1 to the score
+                    let whackSlot = node.parent!.parent as! WhackSlot
+                    if !whackSlot.visible { continue }
+                    if !whackSlot.isHit { continue }
+                    whackSlot.charNode.xScale = 0.85
+                    whackSlot.charNode.yScale = 0.85
+                    whackSlot.hit()
+                    score += 1
+                    
+                    runAction(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))
+                    
+        
+                    
+                }
+            }
+            
+            
+        }
 
     }
    

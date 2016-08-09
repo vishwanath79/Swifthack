@@ -74,6 +74,9 @@ class WhackSlot: SKNode {
             charNode.name = "charEnemy"
         }
         
+        
+        charNode.xScale = 1
+        charNode.yScale = 1
         RunAfterDelay(hideTime * 3.5) { [unowned self] in
             self.hide()
             
@@ -82,6 +85,16 @@ class WhackSlot: SKNode {
        
         
     }
+    
+    func hit() {
+        isHit = true
+        let delay = SKAction.waitForDuration(0.25)
+        let hide = SKAction.moveByX(0, y: -80, duration: 0.5)
+        let notVisible = SKAction.runBlock{ [unowned self] in self.visible = false }
+        charNode.runAction(SKAction.sequence([delay, hide, notVisible]))
+         }
+    
+    
     
     func hide() {
         if !visible { return}
