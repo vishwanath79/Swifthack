@@ -11,10 +11,25 @@ import MobileCoreServices
 
 class ActionViewController: UIViewController {
 
-    @IBOutlet weak var imageView: UIImageView!
+    var pageTitle = ""
+    var pageURL = ""
+    
 
+    
+
+    
+
+    @IBOutlet var script: UITextView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(done))
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIKeyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        
         
         // when extension is created, extensioncontext lets us control how it interacts with the parent app
         //in the case of inputitems this will be an array of data that the parent app is sending to our extension to use
@@ -29,13 +44,48 @@ class ActionViewController: UIViewController {
                let itemDictionary = dict as! NSDictionary
                     let javaScriptValues = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as! NSDictionary
                     
-                    print(javaScriptValues)
-        }
+                    self.pageTitle = javaScriptValues["title"] as! String
+                    self.pageURL = javaScriptValues["URL"] as! String
+                    // uses dispatch_asycn() to set the view controllers title property on the main queue
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        
+                    self.title = self.pageTitle
+                        
+                    
+                    }
+                    
+                    
     
             }
         }
     }
 
+    }
+    
+    func adjustForKeyboard(notification: NSNotification) {
+        
+        
+        let userInfo = notification.userInfo!
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardViewEndFrame = view.convertRect(keyboardScreenEndFrame, fromView: view.window)
+        
+        if notification.name == UIKeyboardWillHideNotification {
+            script.contentInset = UIEdgeInsetsZero
+        }
+        
+        else {
+            
+            script.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+        }
+        
+        script.scrollIndicatorInsets = script.contentInset
+        
+        let selectedRange = script.selectedRange
+        script.scrollRangeToVisible(selectedRange)
+        
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,7 +94,17 @@ class ActionViewController: UIViewController {
     @IBAction func done() {
         // Return any edited content to the host app.
         // This template doesn't do anything, so we just echo the passed in items.
-        self.extensionContext!.completeRequestReturningItems(self.extensionContext!.inputItems, completionHandler: nil)
+        //calling completerequestreturningitems on our extension context will cause the extension to be closed
+        // code required to send the data back to safari at which point it will appear inside the finalize function in action.js.
+        //we pull the custom JS value out of the parameters array then pass it to the javascript eval() which executes any code it finds
+        let item = NSExtensionItem()
+        let webDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: ["customJavaScript": script.text]]
+        let customJavaScript = NSItemProvider(item: webDictionary,typeIdentifier: kUTTypePropertyList as String)
+        item.attachments = [customJavaScript]
+        extensionContext!.completeRequestReturningItems([item], completionHandler: nil)
+        
+        
+        
     }
 
 }
