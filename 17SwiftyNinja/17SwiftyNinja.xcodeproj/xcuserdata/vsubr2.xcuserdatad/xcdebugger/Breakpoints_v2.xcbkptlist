@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
             endingLineNumber = "132"
-            landmarkName = "touchesBegan(_:withEvent:)"
+            landmarkName = "redrawActiveSLice()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
