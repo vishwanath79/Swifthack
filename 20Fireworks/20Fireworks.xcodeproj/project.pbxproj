@@ -58,7 +58,6 @@
 		AE58D8CB1D8BAFDF007E7159 = {
 			isa = PBXGroup;
 			children = (
-				AE58D8EF1D8BB0BA007E7159 /* Content */,
 				AE58D8D61D8BAFDF007E7159 /* 20Fireworks */,
 				AE58D8D51D8BAFDF007E7159 /* Products */,
 			);
@@ -75,6 +74,7 @@
 		AE58D8D61D8BAFDF007E7159 /* 20Fireworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE58D8EF1D8BB0BA007E7159 /* Content */,
 				AE58D8D71D8BAFDF007E7159 /* AppDelegate.swift */,
 				AE58D8D91D8BAFDF007E7159 /* GameScene.sks */,
 				AE58D8DB1D8BAFDF007E7159 /* Actions.sks */,
@@ -99,7 +99,8 @@
 				AE58D8F51D8BB0BA007E7159 /* rocket@2x.png */,
 				AE58D8F61D8BB0BA007E7159 /* spark.png */,
 			);
-			path = Content;
+			name = Content;
+			path = ../Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +348,7 @@
 				AE58D8EE1D8BAFDF007E7159 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

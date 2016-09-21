@@ -33,7 +33,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-let background = SKSpriteNode(imageNamed: "background")
+        let background = SKSpriteNode(imageNamed: "background")
         background.position = CGPoint(x: 512, y: 384)
         background.blendMode = .replace
         background.zPosition = -1
@@ -88,6 +88,98 @@ let background = SKSpriteNode(imageNamed: "background")
         
     }
     
+    func launchFireworks() {
+        // each firework is fired from different positions so that you get a nice spread on the screen
+        let movementAmount: CGFloat = 1800
+        
+        switch GKRandomSource.sharedRandom().nextInt(upperBound: 4) {
+        case 0 :
+            //fire five straight up
+            createFirework(xMovement: 0, x: 512, y: bottomEdge)
+            createFirework(xMovement: 0, x: 512 - 200, y: bottomEdge)
+            createFirework(xMovement: 0, x: 512 - 100, y: bottomEdge)
+            createFirework(xMovement: 0, x: 512 + 100, y: bottomEdge)
+            createFirework(xMovement: 0, x: 512 + 200, y: bottomEdge)
+            
+            
+        case 1:
+            // fire five, in a fan
+            createFirework(xMovement: 0, x: 512, y: bottomEdge)
+            createFirework(xMovement: -200, x: 512 - 200, y: bottomEdge)
+            createFirework(xMovement: -100, x: 512 - 100, y: bottomEdge)
+            createFirework(xMovement: 100, x: 512 + 100, y: bottomEdge)
+            createFirework(xMovement: 200, x: 512 + 200, y: bottomEdge)
+            
+        case 2:
+            // fire five, from the left to the right
+            createFirework(xMovement: movementAmount, x: leftEdge, y: bottomEdge + 400)
+            createFirework(xMovement: movementAmount, x: leftEdge, y: bottomEdge + 300)
+            createFirework(xMovement: movementAmount, x: leftEdge, y: bottomEdge + 200)
+            createFirework(xMovement: movementAmount, x: leftEdge, y: bottomEdge + 100)
+            createFirework(xMovement: movementAmount, x: leftEdge, y: bottomEdge)
+            
+        case 3:
+            // fire five, from the right to the left
+            createFirework(xMovement: -movementAmount, x: rightEdge, y: bottomEdge + 400)
+            createFirework(xMovement: -movementAmount, x: rightEdge, y: bottomEdge + 300)
+            createFirework(xMovement: -movementAmount, x: rightEdge, y: bottomEdge + 200)
+            createFirework(xMovement: -movementAmount, x: rightEdge, y: bottomEdge + 100)
+            createFirework(xMovement: -movementAmount, x: rightEdge, y: bottomEdge)
+            
+        default:
+            break
+            
+        }
+        
+    }
+    
+    func checkTouches(_ touches: Set<UITouch>) {
+        guard let touch = touches.first else {return}
+        
+        let location = touch.location(in: self)
+        let nodesAtPoint = nodes(at: location)
+        
+        for node in nodesAtPoint {
+            
+            for node in nodesAtPoint {
+                if node is SKSpriteNode {
+                    let sprite = node as! SKSpriteNode
+                    
+                    if sprite.name == "firework" {
+                        
+                        for parent in fireworks {
+                            
+                            let firework = parent.children[0] as! SKSpriteNode
+                            if firework.name == "selected" && firework.color != sprite.color {
+                                firework.name = "firwork"
+                                firework.colorBlendFactor = 1
+                            }
+                        }
+                        
+                        sprite.name = "selected"
+                        sprite.colorBlendFactor = 0
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    func explode(firework: SKNode) {
+        //creates an explosion where the firework was and then removes the firework from the game scene
+        let emitter = SKEmitterNode(fileNamed: "explode")!
+        emitter.position = firework.position
+        addChild(emitter)
+        firework.removeFromParent()
+    }
+    
+    
+    //fireworks array stores the firework container node so we need to read the firework image out of its children array
+    func explodeFIreworks() {
+        var numExploded = 0
+    }
+    
     
     
     
@@ -116,15 +208,14 @@ let background = SKSpriteNode(imageNamed: "background")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+    super.touchesMoved(touches, with: event)
+        checkTouches(touches)
         }
-        
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
+
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        super.touchesMoved(touches, with: event)
+        checkTouches(touches)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -137,6 +228,12 @@ let background = SKSpriteNode(imageNamed: "background")
     
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        for (index, firework) in fireworks.enumerated().reversed() {
+            if firework.position.y > 900 {
+                //this uses a position high above so that rockets can explode off screen
+                fireworks.remove(at: index)
+                firework.removeFromParent()
+            }
+        }
     }
 }
