@@ -52,4 +52,14 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    // default view controller does not know it has a spritekitview and certainly does not know what scene is showing so we need to do typecasting
+    //once we have reference to our actual game scene, we can call explodeFireworks
+    
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        let skView = view as! SKView
+        let gameScene = skView.scene as! GameScene
+        gameScene.explodeFIreworks()
+    }
+    
 }

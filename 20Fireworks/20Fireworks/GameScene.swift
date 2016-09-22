@@ -10,27 +10,30 @@ import SpriteKit
 import GameplayKit
 
 
-var gameTimer: Timer!
-var fireworks = [SKNode]()
-
-let leftEdge = -22
-let bottomEdge = -22
-let rightEdge = 1024 + 22
-
-var score: Int = 0 {
-didSet {
-    
-    //
-}
-}
 
 
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    var gameTimer: Timer!
+    var fireworks = [SKNode]()
     
+    let leftEdge = -22
+    let bottomEdge = -22
+    let rightEdge = 1024 + 22
+    
+    var score: Int = 0 {
+        didSet {
+            
+            //
+        }
+    }
+
+    
+    
+   // private var label : SKLabelNode?
+    //private var spinnyNode : SKShapeNode?
+   
     override func didMove(to view: SKView) {
         
         let background = SKSpriteNode(imageNamed: "background")
@@ -141,7 +144,6 @@ class GameScene: SKScene {
         
         for node in nodesAtPoint {
             
-            for node in nodesAtPoint {
                 if node is SKSpriteNode {
                     let sprite = node as! SKSpriteNode
                     
@@ -162,7 +164,7 @@ class GameScene: SKScene {
                 }
             }
         }
-    }
+
     
     
     
@@ -178,53 +180,46 @@ class GameScene: SKScene {
     //fireworks array stores the firework container node so we need to read the firework image out of its children array
     func explodeFIreworks() {
         var numExploded = 0
+        
+        for (index, fireworkContainer) in fireworks.enumerated().reversed() {
+            
+            let firework = fireworkContainer.children[0] as! SKSpriteNode
+            if firework.name == "selected" {
+                //destroy this firework
+                explode(firework: fireworkContainer)
+                fireworks.remove(at:index)
+                numExploded += 1
+            }
+        }
+        
+        switch numExploded {
+            
+        case 0:
+            //nothing - rubbish
+            break
+            
+        case 1:
+            score += 200
+        case 2:
+            score += 500
+        case 3:
+            score += 1500
+        case 4:
+            score += 2500
+        default:
+            score += 4000
+        
+        
+        }
+        
+        
+        
     }
     
     
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    super.touchesMoved(touches, with: event)
-        checkTouches(touches)
-        }
 
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesMoved(touches, with: event)
-        checkTouches(touches)
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
+
     
     
     override func update(_ currentTime: TimeInterval) {
