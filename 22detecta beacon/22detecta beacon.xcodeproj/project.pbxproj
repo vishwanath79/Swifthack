@@ -1,0 +1,304 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AEEB4B551D9E1F7900F38411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEB4B541D9E1F7900F38411 /* AppDelegate.swift */; };
+		AEEB4B571D9E1F7900F38411 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEB4B561D9E1F7900F38411 /* ViewController.swift */; };
+		AEEB4B5A1D9E1F7900F38411 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEEB4B581D9E1F7900F38411 /* Main.storyboard */; };
+		AEEB4B5C1D9E1F7900F38411 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEEB4B5B1D9E1F7900F38411 /* Assets.xcassets */; };
+		AEEB4B5F1D9E1F7900F38411 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEEB4B5D1D9E1F7900F38411 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AEEB4B511D9E1F7900F38411 /* 22detecta beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "22detecta beacon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEEB4B541D9E1F7900F38411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AEEB4B561D9E1F7900F38411 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AEEB4B591D9E1F7900F38411 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AEEB4B5B1D9E1F7900F38411 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AEEB4B5E1D9E1F7900F38411 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AEEB4B601D9E1F7900F38411 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AEEB4B4E1D9E1F7900F38411 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AEEB4B481D9E1F7900F38411 = {
+			isa = PBXGroup;
+			children = (
+				AEEB4B531D9E1F7900F38411 /* 22detecta beacon */,
+				AEEB4B521D9E1F7900F38411 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AEEB4B521D9E1F7900F38411 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AEEB4B511D9E1F7900F38411 /* 22detecta beacon.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AEEB4B531D9E1F7900F38411 /* 22detecta beacon */ = {
+			isa = PBXGroup;
+			children = (
+				AEEB4B541D9E1F7900F38411 /* AppDelegate.swift */,
+				AEEB4B561D9E1F7900F38411 /* ViewController.swift */,
+				AEEB4B581D9E1F7900F38411 /* Main.storyboard */,
+				AEEB4B5B1D9E1F7900F38411 /* Assets.xcassets */,
+				AEEB4B5D1D9E1F7900F38411 /* LaunchScreen.storyboard */,
+				AEEB4B601D9E1F7900F38411 /* Info.plist */,
+			);
+			path = "22detecta beacon";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AEEB4B501D9E1F7900F38411 /* 22detecta beacon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AEEB4B631D9E1F7900F38411 /* Build configuration list for PBXNativeTarget "22detecta beacon" */;
+			buildPhases = (
+				AEEB4B4D1D9E1F7900F38411 /* Sources */,
+				AEEB4B4E1D9E1F7900F38411 /* Frameworks */,
+				AEEB4B4F1D9E1F7900F38411 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "22detecta beacon";
+			productName = "22detecta beacon";
+			productReference = AEEB4B511D9E1F7900F38411 /* 22detecta beacon.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AEEB4B491D9E1F7900F38411 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Vish;
+				TargetAttributes = {
+					AEEB4B501D9E1F7900F38411 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = AEEB4B4C1D9E1F7900F38411 /* Build configuration list for PBXProject "22detecta beacon" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AEEB4B481D9E1F7900F38411;
+			productRefGroup = AEEB4B521D9E1F7900F38411 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AEEB4B501D9E1F7900F38411 /* 22detecta beacon */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AEEB4B4F1D9E1F7900F38411 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEEB4B5F1D9E1F7900F38411 /* LaunchScreen.storyboard in Resources */,
+				AEEB4B5C1D9E1F7900F38411 /* Assets.xcassets in Resources */,
+				AEEB4B5A1D9E1F7900F38411 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AEEB4B4D1D9E1F7900F38411 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEEB4B571D9E1F7900F38411 /* ViewController.swift in Sources */,
+				AEEB4B551D9E1F7900F38411 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AEEB4B581D9E1F7900F38411 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AEEB4B591D9E1F7900F38411 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AEEB4B5D1D9E1F7900F38411 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AEEB4B5E1D9E1F7900F38411 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AEEB4B611D9E1F7900F38411 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AEEB4B621D9E1F7900F38411 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AEEB4B641D9E1F7900F38411 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "22detecta beacon/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vish.-2detecta-beacon";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		AEEB4B651D9E1F7900F38411 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "22detecta beacon/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vish.-2detecta-beacon";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AEEB4B4C1D9E1F7900F38411 /* Build configuration list for PBXProject "22detecta beacon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEEB4B611D9E1F7900F38411 /* Debug */,
+				AEEB4B621D9E1F7900F38411 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AEEB4B631D9E1F7900F38411 /* Build configuration list for PBXNativeTarget "22detecta beacon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEEB4B641D9E1F7900F38411 /* Debug */,
+				AEEB4B651D9E1F7900F38411 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AEEB4B491D9E1F7900F38411 /* Project object */;
+}
